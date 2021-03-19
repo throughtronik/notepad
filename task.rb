@@ -7,6 +7,12 @@ class Task < Post
     @due_date = Time.now
   end
 
+  def load_data(data_hash)
+    super(data_hash)
+
+    @due_date = Date.parse(data_hash['due_date'])
+  end
+
   def read_from_console
     puts "Что необходимо сделать?"
     @text = STDIN.gets.chomp
@@ -15,6 +21,15 @@ class Task < Post
     input = STDIN.gets.chomp
 
     @due_date = Date.parse(input)
+  end
+
+  def to_db_hash
+    return super.merge (
+                         {
+                           'text' => @text,
+                           'due_date' => @due_date.to_s
+                         }
+                       )
   end
 
   def to_strings
