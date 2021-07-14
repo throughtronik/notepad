@@ -1,7 +1,7 @@
 require 'sqlite3'
 
 class Post
-  SQLITE_DB_FILE = 'notepad.sqlite'
+  SQLITE_DB_FILE = './notepad.sqlite'
 
   def self.create(type)
     post_types[type].new
