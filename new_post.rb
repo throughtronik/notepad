@@ -3,9 +3,8 @@ require_relative 'link'
 require_relative 'memo'
 require_relative 'task'
 
-
-puts "Привет, я твой блокнот! Версия 2+ SQLite"
-puts "Что хотите записать в блокнот?"
+puts 'Привет, я твой блокнот! Версия 2+ SQLite'
+puts 'Что хотите записать в блокнот?'
 
 choices = Post.post_types.keys
 

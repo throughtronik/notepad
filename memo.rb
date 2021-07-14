@@ -6,12 +6,12 @@ class Memo < Post
   end
 
   def read_from_console
-    puts "Новая заметка (все, что запишите до строки \"end\"):"
+    puts 'Новая заметка (все, что запишите до строки "end"):'
 
     @text = []
     line = nil
 
-    while line != "end" do
+    while line != 'end'
       line = STDIN.gets.chomp
       @text << line
     end
@@ -20,15 +20,15 @@ class Memo < Post
   end
 
   def to_db_hash
-    return super.merge (
-                         {
-                           'text' => @text.join('\n\r')
-                         }
-                       )
+    super.merge(
+      {
+        'text' => @text.join('\n\r')
+      }
+    )
   end
 
   def to_strings
-    time_string = "Создано: #{@created_at.strftime("%Y.%m.%d, %H:%M:%S")} \n\r "
+    time_string = "Создано: #{@created_at.strftime('%Y.%m.%d, %H:%M:%S')} \n\r "
 
     @text.unshift(time_string)
   end

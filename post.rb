@@ -12,13 +12,13 @@ class Post
 
     db.results_as_hash = false
 
-    query = "SELECT ROWID, * FROM posts "
+    query = 'SELECT ROWID, * FROM posts '
 
-    query += "WHERE type = :type " unless type.nil?
+    query += 'WHERE type = :type ' unless type.nil?
 
-    query += "ORDER by ROWID DESC "
+    query += 'ORDER by ROWID DESC '
 
-    query += "LIMIT :limit " unless limit.nil?
+    query += 'LIMIT :limit ' unless limit.nil?
 
     begin
       statement = db.prepare(query)
@@ -46,7 +46,7 @@ class Post
     db.results_as_hash = true
 
     begin
-      result = db.execute("SELECT * FROM posts WHERE rowid = ?", id)
+      result = db.execute('SELECT * FROM posts WHERE rowid = ?', id)
     rescue SQLite3::SQLException => e
       puts "Не удалось выполнить запрос в базе #{SQLITE_DB_FILE}"
       abort e.message
@@ -84,11 +84,9 @@ class Post
     @created_at = Time.parse(data_hash['created_at'])
   end
 
-  def read_from_console
-  end
+  def read_from_console; end
 
-  def to_strings
-  end
+  def to_strings; end
 
   def save
     file = File.new(file_path, 'w:UTF-8')
@@ -104,12 +102,12 @@ class Post
 
     begin
       db.execute(
-        "INSERT INTO posts (" +
+        'INSERT INTO posts (' +
           to_db_hash.keys.join(',') +
-          ")" +
-          "VALUES (" +
+          ')' +
+          'VALUES (' +
           ('?,' * to_db_hash.keys.size).chomp(',') +
-          ")",
+          ')',
         to_db_hash.values
       )
     rescue SQLite3::SQLException => e
